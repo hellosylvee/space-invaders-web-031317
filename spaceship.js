@@ -1,17 +1,18 @@
-function Spaceship(nameInput, crewArray, phasersInput, shieldsInput) {
-    this.name = nameInput
-    this.phasers = phasersInput
-    this.shields = shieldsInput
+class Spaceship {
+  constructor(name, crew, phasers, shields) {
+    this.name = name
+    this.crew = crew
+    this.phasers = 5
+    this.shields = 4
     this.cloaked = false
     this.warpDrive = "disengaged"
-    this.docked = !crewArray.length ? true : false // 0 is falsey
+    this.docked = this.crew.length ? false:true
     this.phasersCharge = "uncharged"
 
-    if (crewArray.length) {
-      crewArray.forEach(setShipToCrew.bind(this))
+    if (crew.length > 0) {
+      crew.forEach(function(member) {
+        member.currentShip = this
+      }.bind(this))
     }
   }
-
-  var setShipToCrew = function(CrewMember) {
-    CrewMember.currentShip = this
-  }
+}
